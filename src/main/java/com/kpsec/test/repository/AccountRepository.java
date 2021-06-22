@@ -1,4 +1,4 @@
-package src.main.java.com.kpsec.test.repository;
+package com.kpsec.test.repository;
 
 import java.util.List;
 

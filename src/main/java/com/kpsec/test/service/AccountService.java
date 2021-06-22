@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kpsec.test.model.AccountResult;
-
-import src.main.java.com.kpsec.test.repository.AccountRepository;
+import com.kpsec.test.repository.AccountRepository;
 
 @Service
 @Transactional

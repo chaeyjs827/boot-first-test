@@ -21,7 +21,7 @@ public class SampleController {
     private AccountService accountService;
 
     @ApiOperation(value = "sample")
-    @GetMapping(value = "/acount")
+    @GetMapping(value = "/account")
     public List<AccountResult> getAccountInfo(String branchCode) {
         return accountService.getAccountByBranchCode(branchCode);
     }
