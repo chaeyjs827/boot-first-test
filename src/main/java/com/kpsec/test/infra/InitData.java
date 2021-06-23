@@ -15,8 +15,10 @@ import org.springframework.stereotype.Component;
 
 import com.kpsec.test.model.entity.Account;
 import com.kpsec.test.model.entity.Branch;
+import com.kpsec.test.model.entity.TransactionHistory;
 import com.kpsec.test.repository.AccountRepository;
 import com.kpsec.test.repository.BranchRepository;
+import com.kpsec.test.repository.TransactionHistoryRepository;
 
 @Component
 public class InitData {
@@ -27,10 +29,13 @@ public class InitData {
     @Autowired
     BranchRepository branchRepository;
     
+    @Autowired
+    TransactionHistoryRepository transactionRepository;
+    
     @PostConstruct
     private void initAccount() throws IOException {
         if (accountRepository.count() == 0) {
-            Resource resource = new ClassPathResource("계좌정보.csv");
+            Resource resource = new ClassPathResource("account_info.csv");
             List<Account> accountList = Files.readAllLines(resource.getFile().toPath(), StandardCharsets.UTF_8)
                     .stream().skip(1).map(line -> {
                         String[] split = line.split(",");
@@ -51,6 +56,20 @@ public class InitData {
                         return Branch.builder().branchCode(split[0]).branchName(split[1]).build();
                     }).collect(Collectors.toList());
     		branchRepository.saveAll(branchList);
+    	}
+    }
+    
+    @PostConstruct
+    private void initTransactionHistory() throws IOException {
+    	if(transactionRepository.count() == 0) {
+    		Resource resource = new ClassPathResource("transaction_history.csv");
+    		List<TransactionHistory> transactionList = Files.readAllLines(resource.getFile().toPath(), StandardCharsets.UTF_8)
+                    .stream().skip(1).map(line -> {
+                        String[] split = line.split(",");
+                        return TransactionHistory.builder().transactionDate(split[0]).accountNumber(split[1]).transactionSeq(split[2])
+                        		.transactionAmount(split[3]).transactionFee(split[4]).transactionVoidYN(split[5]).build();
+                    }).collect(Collectors.toList());
+    		transactionRepository.saveAll(transactionList);
     	}
     }
 }
