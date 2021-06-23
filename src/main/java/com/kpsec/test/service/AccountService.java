@@ -17,7 +17,7 @@ public class AccountService {
     private AccountRepository accountRepository;
 
     public List<AccountResult> getAccountByBranchCode(String branchCode){
-        List<AccountResult> aa = accountRepository.getAccountByBranchCode(branchCode);
-        return aa;
+        List<AccountResult> list = accountRepository.getAccountByBranchCode(branchCode);
+        return list;
     }
 }

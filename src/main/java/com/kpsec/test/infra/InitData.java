@@ -66,8 +66,8 @@ public class InitData {
     		List<TransactionHistory> transactionList = Files.readAllLines(resource.getFile().toPath(), StandardCharsets.UTF_8)
                     .stream().skip(1).map(line -> {
                         String[] split = line.split(",");
-                        return TransactionHistory.builder().transactionDate(split[0]).accountNumber(split[1]).transactionSeq(split[2])
-                        		.transactionAmount(split[3]).transactionFee(split[4]).transactionVoidYN(split[5]).build();
+                        return TransactionHistory.builder().transactionDate(split[0]).accountNo(split[1]).transactionSeq(split[2])
+                        		.transactionAmount(Integer.parseInt(split[3])).transactionFee(Integer.parseInt(split[4])).transactionVoidYN(split[5]).build();
                     }).collect(Collectors.toList());
     		transactionRepository.saveAll(transactionList);
     	}

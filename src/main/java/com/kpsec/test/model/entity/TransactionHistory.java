@@ -22,14 +22,14 @@ public class TransactionHistory{
 	@Id
     private String transactionDate;
     
-    private String accountNumber;
+    private String accountNo;
     
     @Id
     private String transactionSeq;
     
-    private String transactionAmount;
+    private Integer transactionAmount;
     
-    private String transactionFee;
+    private Integer transactionFee;
     
     private String transactionVoidYN;
     

@@ -11,7 +11,8 @@ import com.kpsec.test.model.entity.Account;
 
 public interface AccountRepository extends JpaRepository<Account, String> {
 
-    @Query(value = "SELECT account_no as accountNo, account_name as accountName FROM account WHERE branch_code = :branchCode", nativeQuery = true)
+//	@Query(value = "SELECT account_no as accountNo, account_name as accountName FROM account WHERE branch_code = :branchCode", nativeQuery = true)
+    @Query(value = "SELECT account_no as accountNo, account_name as accountName FROM account", nativeQuery = true)
     List<AccountResult> getAccountByBranchCode(@Param("branchCode") String branchCode);
 
 }
