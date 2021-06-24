@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kpsec.test.model.AccountResult;
+import com.kpsec.test.model.TopCustomer;
 import com.kpsec.test.repository.AccountRepository;
 
 @Service
@@ -16,8 +16,8 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public List<AccountResult> getAccountByBranchCode(String branchCode){
-        List<AccountResult> list = accountRepository.getAccountByBranchCode(branchCode);
+    public List<TopCustomer> getAccountByBranchCode(String branchCode){
+        List<TopCustomer> list = accountRepository.getAccountByBranchCode(branchCode);
         return list;
     }
 }
