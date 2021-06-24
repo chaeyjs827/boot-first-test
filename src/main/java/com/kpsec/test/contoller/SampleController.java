@@ -28,26 +28,26 @@ public class SampleController {
         return list;
     }
 
-    @ApiOperation(value = "second")
-    @GetMapping(value = "/second")
-    public List<AccountResult> getSecond(String branchCode) {
-    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
-    	return list;
-    }
-    
-    @ApiOperation(value = "third")
-    @GetMapping(value = "/third")
-    public List<AccountResult> getThird(String branchCode) {
-    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
-    	return list;
-    }
-    
-    @ApiOperation(value = "fourth")
-    @GetMapping(value = "/fourth")
-    public List<AccountResult> getFourth(String branchCode) {
-    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
-    	return list;
-    }
+//    @ApiOperation(value = "second")
+//    @GetMapping(value = "/second")
+//    public List<AccountResult> getSecond(String branchCode) {
+//    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
+//    	return list;
+//    }
+//    
+//    @ApiOperation(value = "third")
+//    @GetMapping(value = "/third")
+//    public List<AccountResult> getThird(String branchCode) {
+//    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
+//    	return list;
+//    }
+//    
+//    @ApiOperation(value = "fourth")
+//    @GetMapping(value = "/fourth")
+//    public List<AccountResult> getFourth(String branchCode) {
+//    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
+//    	return list;
+//    }
     
     
 }
