@@ -1,6 +1,6 @@
 package com.kpsec.test.model;
 
-public interface TopCustomer {
+public interface TopCustomerResult {
 	String getYear();
 	String getName();
 	String getAccNo();

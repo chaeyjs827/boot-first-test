@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kpsec.test.model.AccountResult;
-import com.kpsec.test.model.TopCustomer;
+import com.kpsec.test.model.NonServiceCustomerResult;
+import com.kpsec.test.model.TopCustomerResult;
 import com.kpsec.test.service.AccountService;
 
 import io.swagger.annotations.Api;
@@ -23,17 +23,18 @@ public class SampleController {
 
     @ApiOperation(value = "first")
     @GetMapping(value = "/first")
-    public List<TopCustomer> getAccountInfo(String branchCode) {
-    	List<TopCustomer> list = accountService.getAccountByBranchCode(branchCode);
+    public List<TopCustomerResult> getTopCustomerOfYear(String branchCode) {
+    	List<TopCustomerResult> list = accountService.getTopCustomerOfYear(branchCode);
         return list;
     }
 
-//    @ApiOperation(value = "second")
-//    @GetMapping(value = "/second")
-//    public List<AccountResult> getSecond(String branchCode) {
-//    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
-//    	return list;
-//    }
+    @ApiOperation(value = "second")
+    @GetMapping(value = "/second")
+    public List<NonServiceCustomerResult> getNonServiceCustomer() {
+    	List<NonServiceCustomerResult> list = accountService.getNonServiceCustomer();
+    	return list;
+    }
+    
 //    
 //    @ApiOperation(value = "third")
 //    @GetMapping(value = "/third")
