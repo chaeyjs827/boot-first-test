@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.kpsec.test.model.BranchMigrationResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
 import com.kpsec.test.model.TopCustomerResult;
 import com.kpsec.test.model.entity.Account;
@@ -49,5 +50,8 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 			"    on account.account_no=b.account_no\n" + 
 			"where b.account_no is null    ", nativeQuery = true)
 	List<NonServiceCustomerResult> getNonServiceCustomer();
+
+	@Query(value = "select branch_name as brName, branch_code as brCode, 0 as sumAmt from branch where branch_name = :branchName", nativeQuery = true)
+	List<BranchMigrationResult> getBranchMigration(@Param("branchName") String branchName);
 
 }

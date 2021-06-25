@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kpsec.test.model.BranchMigrationResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
 import com.kpsec.test.model.TopCustomerResult;
 import com.kpsec.test.service.AccountService;
@@ -45,13 +47,14 @@ public class SampleController {
 //    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
 //    	return list;
 //    }
-//    
-//    @ApiOperation(value = "fourth")
-//    @GetMapping(value = "/fourth")
-//    public List<AccountResult> getFourth(String branchCode) {
-//    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
-//    	return list;
-//    }
+//   
+    
+    @ApiOperation(value = "fourth")
+    @GetMapping(value = "/fourth")
+    public List<BranchMigrationResult> getFourth(@RequestParam("brName") String branchName) {
+    	List<BranchMigrationResult> list = accountService.getBranchMigration(branchName);
+    	return list;
+    }
     
     
 }

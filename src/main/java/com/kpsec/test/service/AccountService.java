@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kpsec.test.model.BranchMigrationResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
 import com.kpsec.test.model.TopCustomerResult;
 import com.kpsec.test.repository.AccountRepository;
@@ -24,6 +25,11 @@ public class AccountService {
 
     public List<NonServiceCustomerResult> getNonServiceCustomer(){
     	List<NonServiceCustomerResult> list = accountRepository.getNonServiceCustomer();
+    	return list;
+    }
+
+    public List<BranchMigrationResult> getBranchMigration(String branchName){
+    	List<BranchMigrationResult> list = accountRepository.getBranchMigration(branchName);
     	return list;
     }
 }
