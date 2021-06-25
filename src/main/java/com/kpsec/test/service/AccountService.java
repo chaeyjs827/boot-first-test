@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kpsec.test.model.BranchMigrationResult;
+import com.kpsec.test.model.BranchTotalAmountResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
 import com.kpsec.test.model.TopCustomerResult;
 import com.kpsec.test.repository.AccountRepository;
@@ -28,6 +29,11 @@ public class AccountService {
     	return list;
     }
 
+    public List<BranchTotalAmountResult> getBranchTotalAmountByYear(){
+    	List<BranchTotalAmountResult> list = accountRepository.getBranchTotalAmountByYear();
+    	return list;
+    }
+    
     public List<BranchMigrationResult> getBranchMigration(String branchName){
     	List<BranchMigrationResult> list = accountRepository.getBranchMigration(branchName);
     	return list;

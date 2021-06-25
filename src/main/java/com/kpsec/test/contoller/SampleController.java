@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kpsec.test.model.BranchMigrationResult;
+import com.kpsec.test.model.BranchTotalAmountResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
 import com.kpsec.test.model.TopCustomerResult;
 import com.kpsec.test.service.AccountService;
@@ -40,14 +41,14 @@ public class SampleController {
     	return list;
     }
     
-//    
-//    @ApiOperation(value = "third")
-//    @GetMapping(value = "/third")
-//    public List<AccountResult> getThird(String branchCode) {
-//    	List<AccountResult> list = accountService.getAccountByBranchCode(branchCode);
-//    	return list;
-//    }
-//   
+    
+    @ApiOperation(value = "third")
+    @GetMapping(value = "/third")
+    public List<BranchTotalAmountResult> getThird() {
+    	List<BranchTotalAmountResult> list = accountService.getBranchTotalAmountByYear();
+    	return list;
+    }
+   
     
     @ApiOperation(value = "fourth")
     @GetMapping(value = "/fourth")

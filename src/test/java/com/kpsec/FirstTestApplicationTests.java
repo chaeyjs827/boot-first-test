@@ -39,14 +39,22 @@ class FirstTestApplicationTests {
 		String content = result.getResponse().getContentAsString();
 		System.out.println(content);
 	}
+
+	// 문제 3번
+	@Test
+	void thirdTest() throws Exception {
+		MvcResult result = mockMvc.perform(get("/api/third"))
+				.andReturn();
+		String content = result.getResponse().getContentAsString();
+		System.out.println(content);
+	}
 	
 	// 문제 4번
 	@Test
 	void fourthTest() throws Exception {
 		MvcResult result = mockMvc.perform(get("/api/fourth")
-											.param("brName", "판교점")
-				)
-				.andReturn();
+							.param("brName", "판교점"))
+							.andReturn();
 		String content = result.getResponse().getContentAsString();
 		System.out.println(content);
 	}
