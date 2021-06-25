@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kpsec.test.model.NonServiceCustomerResult;
@@ -23,6 +24,7 @@ public class SampleController {
 
     @ApiOperation(value = "first")
     @GetMapping(value = "/first")
+    @ResponseBody
     public List<TopCustomerResult> getTopCustomerOfYear(String branchCode) {
     	List<TopCustomerResult> list = accountService.getTopCustomerOfYear(branchCode);
         return list;
@@ -30,6 +32,7 @@ public class SampleController {
 
     @ApiOperation(value = "second")
     @GetMapping(value = "/second")
+    @ResponseBody
     public List<NonServiceCustomerResult> getNonServiceCustomer() {
     	List<NonServiceCustomerResult> list = accountService.getNonServiceCustomer();
     	return list;
