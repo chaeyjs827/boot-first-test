@@ -52,8 +52,33 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 			"where b.account_no is null    ", nativeQuery = true)
 	List<NonServiceCustomerResult> getNonServiceCustomer();
 
-	@Query(value = "SELECT branch_name AS year ,branch_name AS brName ,branch_name AS brCode ,branch_name AS sumAmt \n" + 
-			"FROM branch", nativeQuery = true)
+	@Query(value = "select YEAR(t.transaction_date) as year,sum(t.transaction_amount) as sumAmt, a.branch_code as brCode ,b.branch_name as brName\n" + 
+			"from transaction_history t , account a , branch b\n" + 
+			"where\n" + 
+			"   YEAR(t.transaction_date)='2018'\n" + 
+			"    and t.account_no=a.account_no\n" + 
+			"    and a.branch_code=b.branch_Code\n" + 
+			"    and t.transaction_voidYN='N'\n" + 
+			"    group by YEAR(t.transaction_date),a.branch_code,b.branch_name\n" + 
+			"union \n" + 
+			"select YEAR(t.transaction_date) as year,sum(t.transaction_amount) as sum,a.branch_code,b.branch_name\n" + 
+			"from transaction_history t , account a , branch b\n" + 
+			"where\n" + 
+			"   YEAR(t.transaction_date)='2019'\n" + 
+			"    and t.account_no=a.account_no\n" + 
+			"    and a.branch_code=b.branch_Code\n" + 
+			"    and t.transaction_voidYN='N'\n" + 
+			"    group by YEAR(t.transaction_date),a.branch_code,b.branch_name\n" + 
+			"union\n" + 
+			"select YEAR(t.transaction_date) as year,sum(t.transaction_amount) as sumAmt,a.branch_code,b.branch_name\n" + 
+			"from transaction_history t , account a , branch b\n" + 
+			"where\n" + 
+			"   YEAR(t.transaction_date)='2020'\n" + 
+			"    and t.account_no=a.account_no\n" + 
+			"    and a.branch_code=b.branch_Code\n" + 
+			"    and t.transaction_voidYN='N'\n" + 
+			"    group by YEAR(t.transaction_date),a.branch_code,b.branch_name\n" + 
+			"order by year,sumAmt", nativeQuery = true)
 	List<BranchTotalAmountResult> getBranchTotalAmountByYear();
 	
 	@Query(value = "select branch_name as brName, branch_code as brCode, 0 as sumAmt from branch where branch_name = :branchName", nativeQuery = true)
