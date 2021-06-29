@@ -52,8 +52,11 @@ public class SampleController {
     
     @ApiOperation(value = "fourth")
     @GetMapping(value = "/fourth")
-    public List<BranchMigrationResult> getFourth(@RequestParam("brName") String branchName) {
+    public <T> List<BranchMigrationResult> getFourth(@RequestParam("brName") String branchName) {
     	List<BranchMigrationResult> list = accountService.getBranchMigration(branchName);
+    	if(list.size() == 0) {
+    		
+    	}
     	return list;
     }
     

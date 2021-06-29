@@ -1,6 +1,9 @@
 package com.kpsec.test.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.NoResultException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +38,8 @@ public class AccountService {
     }
     
     public List<BranchMigrationResult> getBranchMigration(String branchName){
-    	List<BranchMigrationResult> list = accountRepository.getBranchMigration(branchName);
+    	List<BranchMigrationResult> list = new ArrayList<>();
+		list = accountRepository.getBranchMigration(branchName);
     	return list;
     }
 }
