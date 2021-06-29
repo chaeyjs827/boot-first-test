@@ -22,6 +22,15 @@ class FirstTestApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 	
+	// Send Mail
+	@Test
+	void sendMail() throws Exception {
+		MvcResult result = mockMvc.perform(get("/api/mail"))
+				.andReturn();
+		String content = result.getResponse().getContentAsString();
+		System.out.println(content);
+	}
+	
 	// 문제 1번
 	@Test
 	void firstTest() throws Exception {
@@ -53,7 +62,7 @@ class FirstTestApplicationTests {
 	@Test
 	void fourthTest() throws Exception {
 		MvcResult result = mockMvc.perform(get("/api/fourth")
-							.param("brName", "판교점"))
+							.param("brName", "하이"))
 							.andReturn();
 		String content = result.getResponse().getContentAsString();
 		System.out.println(content);
