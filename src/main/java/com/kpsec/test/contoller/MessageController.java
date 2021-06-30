@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class MessageController {
 	
 	@GetMapping("/api/return-string")
@@ -27,12 +27,14 @@ public class MessageController {
 	
 	@GetMapping("/api/return-map")
 	@ResponseBody
-	public Map<String, String> returnMap() {
-		Map<String, String> map = new HashMap<String, String>() {{
+	public Map<String, Object> returnMap() {
+		Map<String, Object> map = new HashMap<String, Object>() {{
 			put("asd", "asd");
 			put("fff", "fff");
 			put("rrr", "rrr");
 			put("eee", "eee");
+			put("yyy", 123);
+			put("zzz", 1l);
 		}};
 		return map;
 	}

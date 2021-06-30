@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kpsec.test.model.AccountResult;
 import com.kpsec.test.model.BranchMigrationResult;
 import com.kpsec.test.model.BranchTotalAmountResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
@@ -54,6 +55,29 @@ public class SampleController {
     @GetMapping(value = "/fourth")
     public <T> List<BranchMigrationResult> getFourth(@RequestParam("brName") String branchName) {
     	List<BranchMigrationResult> list = accountService.getBranchMigration(branchName);
+    	if(list.size() == 0) {
+    		
+    	}
+    	return list;
+    }
+    
+    @ApiOperation(value = "findByAccountName")
+    @GetMapping(value = "/findByAccountName")
+    public <T> List<AccountResult> findByAccountName(@RequestParam("accountName") String accountName) {
+    	List<AccountResult> list = accountService.findByAccountName(accountName);
+    	if(list.size() == 0) {
+    		
+    	}
+    	return list;
+    }
+    
+    @ApiOperation(value = "findAllbyAllCondition")
+    @GetMapping(value = "/findAllbyAllCondition")
+//    String accountName, String accountNo, String accountCode    
+    public <T> List<AccountResult> findByAccountName(@RequestParam("accountName") String accountName,
+										    		@RequestParam("accountNo") String accountNo,
+										    		@RequestParam("branchCode") String branchCode) {
+    	List<AccountResult> list = accountService.findByAccountNameAndBranchCodeAndAccountNo(accountName, accountNo ,branchCode );
     	if(list.size() == 0) {
     		
     	}

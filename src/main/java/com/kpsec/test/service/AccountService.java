@@ -3,12 +3,11 @@ package com.kpsec.test.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.NoResultException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kpsec.test.model.AccountResult;
 import com.kpsec.test.model.BranchMigrationResult;
 import com.kpsec.test.model.BranchTotalAmountResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
@@ -40,6 +39,16 @@ public class AccountService {
     public List<BranchMigrationResult> getBranchMigration(String branchName){
     	List<BranchMigrationResult> list = new ArrayList<>();
 		list = accountRepository.getBranchMigration(branchName);
+    	return list;
+    }
+    
+    public List<AccountResult> findByAccountName(String accountName){
+    	List<AccountResult> list = accountRepository.findByAccountName(accountName);
+    	return list;
+    }
+    
+    public List<AccountResult> findByAccountNameAndBranchCodeAndAccountNo(String accountName, String accountNo, String branchCode){
+    	List<AccountResult> list = accountRepository.findByAccountNameAndBranchCodeAndAccountNo(accountName, branchCode, accountNo);
     	return list;
     }
 }

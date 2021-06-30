@@ -13,5 +13,5 @@ public interface BranchRepository extends JpaRepository<Branch, String> {
 
     @Query(value = "SELECT account_no as accountNo, account_name as accountName FROM account WHERE branch_code = :branchCode", nativeQuery = true)
     List<AccountResult> getAccountByBranchCode(@Param("branchCode") String branchCode);
-
+    
 }

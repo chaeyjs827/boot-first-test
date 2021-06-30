@@ -67,5 +67,25 @@ class FirstTestApplicationTests {
 		String content = result.getResponse().getContentAsString();
 		System.out.println(content);
 	}
+	
+	@Test
+	void accountName() throws Exception {
+		MvcResult result = mockMvc.perform(get("/api/findByAccountName")
+				.param("accountName", "제이"))
+				.andReturn();
+		String content = result.getResponse().getContentAsString();
+		System.out.println(content);
+	}
+	
+	@Test
+	void findAllbyAllCondition() throws Exception {
+		MvcResult result = mockMvc.perform(get("/api/findAllbyAllCondition")
+				.param("accountName", "제이")
+				.param("accountNo", "11111111")
+				.param("branchCode", "A"))
+				.andReturn();
+		String content = result.getResponse().getContentAsString();
+		System.out.println(content);
+	}
 
 }
