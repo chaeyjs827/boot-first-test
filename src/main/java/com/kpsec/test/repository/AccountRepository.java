@@ -1,6 +1,7 @@
 package com.kpsec.test.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -85,8 +86,11 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 	@Query(value = "select branch_name as brName, branch_code as brCode, 0 as sumAmt from branch where branch_name = :branchName", nativeQuery = true)
 	List<BranchMigrationResult> getBranchMigration(@Param("branchName") String branchName);
 
-	List<AccountResult> findByAccountName(String accountName);
+//	List<AccountResult> findByAccountName(String accountName);
 	
 	List<AccountResult> findByAccountNameAndBranchCodeAndAccountNo(String accountName, String accountNo, String accountCode);
+
+//	Optional<AccountResult> findById(String accountName);
+	Optional<Account> findByAccountName(String accountName);
 	
 }

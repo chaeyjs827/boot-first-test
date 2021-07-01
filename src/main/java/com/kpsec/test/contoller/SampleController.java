@@ -1,6 +1,7 @@
 package com.kpsec.test.contoller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import com.kpsec.test.model.BranchMigrationResult;
 import com.kpsec.test.model.BranchTotalAmountResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
 import com.kpsec.test.model.TopCustomerResult;
+import com.kpsec.test.model.entity.Account;
 import com.kpsec.test.service.AccountService;
 
 import io.swagger.annotations.Api;
@@ -61,15 +63,15 @@ public class SampleController {
     	return list;
     }
     
-    @ApiOperation(value = "findByAccountName")
-    @GetMapping(value = "/findByAccountName")
-    public <T> List<AccountResult> findByAccountName(@RequestParam("accountName") String accountName) {
-    	List<AccountResult> list = accountService.findByAccountName(accountName);
-    	if(list.size() == 0) {
-    		
-    	}
-    	return list;
-    }
+//    @ApiOperation(value = "findByAccountName")
+//    @GetMapping(value = "/findByAccountName")
+//    public <T> List<AccountResult> findByAccountName(@RequestParam("accountName") String accountName) {
+//    	List<AccountResult> list = accountService.findByAccountName(accountName);
+//    	if(list.size() == 0) {
+//    		
+//    	}
+//    	return list;
+//    }
     
     @ApiOperation(value = "findAllbyAllCondition")
     @GetMapping(value = "/findAllbyAllCondition")
@@ -82,6 +84,13 @@ public class SampleController {
     		
     	}
     	return list;
+    }
+    
+    @ApiOperation(value = "testFindAllInAccount")
+    @GetMapping(value = "/testFindAllInAccount")
+    public Optional<Account> testFindAllInAccount(@RequestParam("accountName") String accountName) {
+    	Optional<Account> result = accountService.testFindAllInAccount(accountName);
+    	return result;
     }
     
     

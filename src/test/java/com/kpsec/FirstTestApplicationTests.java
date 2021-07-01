@@ -87,5 +87,14 @@ class FirstTestApplicationTests {
 		String content = result.getResponse().getContentAsString();
 		System.out.println(content);
 	}
+	
+	@Test
+	void testFindAllInAccount() throws Exception {
+		MvcResult result = mockMvc.perform(get("/api/testFindAllInAccount")
+				.param("accountName", "제이"))
+				.andReturn();
+		String content = result.getResponse().getContentAsString();
+		System.out.println(content);
+	}
 
 }

@@ -2,6 +2,7 @@ package com.kpsec.test.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import com.kpsec.test.model.BranchMigrationResult;
 import com.kpsec.test.model.BranchTotalAmountResult;
 import com.kpsec.test.model.NonServiceCustomerResult;
 import com.kpsec.test.model.TopCustomerResult;
+import com.kpsec.test.model.entity.Account;
 import com.kpsec.test.repository.AccountRepository;
 
 @Service
@@ -42,13 +44,18 @@ public class AccountService {
     	return list;
     }
     
-    public List<AccountResult> findByAccountName(String accountName){
-    	List<AccountResult> list = accountRepository.findByAccountName(accountName);
-    	return list;
-    }
+//    public List<AccountResult> findByAccountName(String accountName){
+//    	List<AccountResult> list = accountRepository.findByAccountName(accountName);
+//    	return list;
+//    }
     
     public List<AccountResult> findByAccountNameAndBranchCodeAndAccountNo(String accountName, String accountNo, String branchCode){
     	List<AccountResult> list = accountRepository.findByAccountNameAndBranchCodeAndAccountNo(accountName, branchCode, accountNo);
     	return list;
+    }
+    
+    public Optional<Account> testFindAllInAccount(String accountName) {
+    	Optional<Account> result = accountRepository.findByAccountName(accountName);
+    	return result;
     }
 }
