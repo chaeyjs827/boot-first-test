@@ -5,7 +5,7 @@ plugins {
 	id 'war'
 }
 
-group = 'com.kpsec'
+group = 'com.legacy'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -27,6 +27,11 @@ dependencies {
 	
 	// dependency for sent mail
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// dependency for spring security
+	// implementation 'org.springframework.boot:spring-boot-starter-security'
+	// implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
 	implementation 'junit:junit:4.12'
 
 	runtimeOnly('com.h2database:h2')
