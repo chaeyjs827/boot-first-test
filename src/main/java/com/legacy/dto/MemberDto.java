@@ -2,6 +2,9 @@ package com.legacy.dto;
 
 import java.time.LocalDateTime;
 
+import com.legacy.entity.MemberEntity;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,5 +21,19 @@ public class MemberDto {
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
     
+    public MemberEntity toEntity() {
+    	return MemberEntity.builder()
+    			.id(id)
+    			.email(email)
+    			.password(password)
+    			.build();
+    }
+    
+    @Builder
+    public MemberDto(Long id, String email, String password) {
+    	this.id = id;
+    	this.email = email;
+    	this.password = password;
+    }
 
 }
