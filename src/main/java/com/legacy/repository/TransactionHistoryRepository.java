@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.legacy.entity.TransactionHistory;
 import com.legacy.model.TransactionHistoryResult;
-import com.legacy.model.entity.TransactionHistory;
 
 public interface TransactionHistoryRepository extends JpaRepository<TransactionHistory, String> {
 

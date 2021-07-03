@@ -1,4 +1,4 @@
-package com.legacy.model.entity;
+package com.legacy.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

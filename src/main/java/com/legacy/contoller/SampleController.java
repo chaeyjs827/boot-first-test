@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.legacy.entity.Account;
 import com.legacy.model.AccountResult;
 import com.legacy.model.BranchMigrationResult;
 import com.legacy.model.BranchTotalAmountResult;
 import com.legacy.model.NonServiceCustomerResult;
 import com.legacy.model.TopCustomerResult;
-import com.legacy.model.entity.Account;
 import com.legacy.service.AccountService;
 
 import io.swagger.annotations.Api;

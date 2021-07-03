@@ -1,4 +1,4 @@
-package com.legacy.model.entity;
+package com.legacy.entity;
 
 import java.io.Serializable;
 

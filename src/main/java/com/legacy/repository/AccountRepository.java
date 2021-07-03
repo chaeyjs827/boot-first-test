@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.legacy.entity.Account;
 import com.legacy.model.AccountResult;
 import com.legacy.model.BranchMigrationResult;
 import com.legacy.model.BranchTotalAmountResult;
 import com.legacy.model.NonServiceCustomerResult;
 import com.legacy.model.TopCustomerResult;
-import com.legacy.model.entity.Account;
 
 public interface AccountRepository extends JpaRepository<Account, String> {
 

@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.legacy.entity.Branch;
 import com.legacy.model.AccountResult;
-import com.legacy.model.entity.Branch;
 
 public interface BranchRepository extends JpaRepository<Branch, String> {
 

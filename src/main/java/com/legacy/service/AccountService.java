@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.legacy.entity.Account;
 import com.legacy.model.AccountResult;
 import com.legacy.model.BranchMigrationResult;
 import com.legacy.model.BranchTotalAmountResult;
 import com.legacy.model.NonServiceCustomerResult;
 import com.legacy.model.TopCustomerResult;
-import com.legacy.model.entity.Account;
 import com.legacy.repository.AccountRepository;
 
 @Service

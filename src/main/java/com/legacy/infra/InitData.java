@@ -13,9 +13,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
-import com.legacy.model.entity.Account;
-import com.legacy.model.entity.Branch;
-import com.legacy.model.entity.TransactionHistory;
+import com.legacy.entity.Account;
+import com.legacy.entity.Branch;
+import com.legacy.entity.TransactionHistory;
 import com.legacy.repository.AccountRepository;
 import com.legacy.repository.BranchRepository;
 import com.legacy.repository.TransactionHistoryRepository;
