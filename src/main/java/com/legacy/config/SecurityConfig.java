@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.CsrfBeanDefinitionParser;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -36,27 +37,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	http.authorizeRequests().antMatchers("/").permitAll();
-    	/*
+//    	http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests()
-                // 페이지 권한 설정
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/myinfo").hasRole("MEMBER")
-                .antMatchers("/**").permitAll()
-            .and() // 로그인 설정
-                .formLogin()
-                .loginPage("/user/login")
-                .defaultSuccessUrl("/user/login/result")
-                .permitAll()
-            .and() // 로그아웃 설정
-               .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                .logoutSuccessUrl("/user/logout/result")
-                .invalidateHttpSession(true);
-//            .and()
-                // 403 예외처리 핸들링
-//               .exceptionHandling().accessDeniedPage("/user/denied");
-    	 */
+		    // 페이지 권한 설정
+		    .antMatchers("/admin/**").hasRole("ADMIN")
+	    	.antMatchers("/user/myinfo").hasRole("MEMBER")
+		    .antMatchers("/**").permitAll()
+		    // h2-console 페이지 처리
+		    .antMatchers("/h2-console/**").permitAll()
+		.and() // 로그인 설정
+		    .formLogin()
+		    .loginPage("/user/login")
+		    .defaultSuccessUrl("/user/login/result")
+		    .permitAll()
+		.and() // 로그아웃 설정
+		   .logout()
+		    .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+		    .logoutSuccessUrl("/user/logout/result")
+		    .invalidateHttpSession(true)
+		.and()
+		    // 403 예외처리 핸들링
+		   .exceptionHandling().accessDeniedPage("/user/denied")
+		.and()
+			// h2-console 페이지 처리
+			.csrf().disable()
+			.headers().frameOptions().disable();
     }
 
     @Override
