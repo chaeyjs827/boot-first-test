@@ -11,7 +11,7 @@ server:
 spring:
   mvc:
     view:
-      prefix: /templates/
+      prefix: /templates
       suffix: .html
   datasource:
     url: jdbc:h2:mem:legacydb;MODE=MySQL

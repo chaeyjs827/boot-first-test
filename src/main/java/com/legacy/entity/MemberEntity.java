@@ -9,15 +9,17 @@ import javax.persistence.Table;
 
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "member")
 @Entity
+@Builder
 public class MemberEntity {
 
 	@Id

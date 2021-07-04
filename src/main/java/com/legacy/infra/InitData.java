@@ -15,27 +15,32 @@ import org.springframework.stereotype.Component;
 
 import com.legacy.entity.Account;
 import com.legacy.entity.Branch;
+import com.legacy.entity.MemberEntity;
 import com.legacy.entity.TransactionHistory;
 import com.legacy.repository.AccountRepository;
 import com.legacy.repository.BranchRepository;
+import com.legacy.repository.MemberRepository;
 import com.legacy.repository.TransactionHistoryRepository;
 
 @Component
 public class InitData {
 
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    BranchRepository branchRepository;
+    private BranchRepository branchRepository;
     
     @Autowired
-    TransactionHistoryRepository transactionRepository;
+    private TransactionHistoryRepository transactionRepository;
+    
+    @Autowired
+    private MemberRepository memberRepository;
     
     @PostConstruct
     private void initAccount() throws IOException {
         if (accountRepository.count() == 0) {
-            Resource resource = new ClassPathResource("account_info.csv");
+            Resource resource = new ClassPathResource("h2-sample/account_info.csv");
             List<Account> accountList = Files.readAllLines(resource.getFile().toPath(), StandardCharsets.UTF_8)
                     .stream().skip(1).map(line -> {
                         String[] split = line.split(",");
@@ -49,7 +54,7 @@ public class InitData {
     @PostConstruct
     private void initBranch() throws IOException {
     	if(branchRepository.count() == 0) {
-    		Resource resource = new ClassPathResource("branch_info.csv");
+    		Resource resource = new ClassPathResource("h2-sample/branch_info.csv");
     		List<Branch> branchList = Files.readAllLines(resource.getFile().toPath(), StandardCharsets.UTF_8)
                     .stream().skip(1).map(line -> {
                         String[] split = line.split(",");
@@ -62,7 +67,7 @@ public class InitData {
     @PostConstruct
     private void initTransactionHistory() throws IOException {
     	if(transactionRepository.count() == 0) {
-    		Resource resource = new ClassPathResource("transaction_history.csv");
+    		Resource resource = new ClassPathResource("h2-sample/transaction_history.csv");
     		List<TransactionHistory> transactionList = Files.readAllLines(resource.getFile().toPath(), StandardCharsets.UTF_8)
                     .stream().skip(1).map(line -> {
                         String[] split = line.split(",");
@@ -70,6 +75,19 @@ public class InitData {
                         		.transactionAmount(Integer.parseInt(split[3])).transactionFee(Integer.parseInt(split[4])).transactionVoidYN(split[5]).build();
                     }).collect(Collectors.toList());
     		transactionRepository.saveAll(transactionList);
+    	}
+    }
+    
+    @PostConstruct
+    private void initMember() throws IOException {
+    	if(memberRepository.count() == 0) {
+    		Resource resource = new ClassPathResource("h2-sample/member.csv");
+    		List<MemberEntity> memberList = Files.readAllLines(resource.getFile().toPath(), StandardCharsets.UTF_8)
+    				.stream().skip(1).map(line -> {
+    					String[] split = line.split(",");
+    					return MemberEntity.builder().id(Long.parseLong(split[0])).email(split[1]).password(split[2]).build();
+    				}).collect(Collectors.toList());
+    		memberRepository.saveAll(memberList);
     	}
     }
 }
