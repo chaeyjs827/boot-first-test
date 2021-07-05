@@ -15,11 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileUploadService {
 
-	private final Path root = Paths.get("uploads");
+	private final Path UPLOAD_PATH = Paths.get("C:\\Users\\chaey\\Downloads\\upload");
 
 	public void init() {
 		try {
-			Files.createDirectory(root);
+			Files.createDirectory(UPLOAD_PATH);
 		} catch (IOException e) {
 			throw new RuntimeException("Could not initialize folder for upload");
 		}
@@ -27,7 +27,7 @@ public class FileUploadService {
 
 	public void save(MultipartFile file) {
 		try {
-			Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+			Files.copy(file.getInputStream(), this.UPLOAD_PATH.resolve(file.getOriginalFilename()));
 		} catch (Exception e) {
 			throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
 		}
@@ -35,7 +35,7 @@ public class FileUploadService {
 
 	public Resource load(String filename) {
 		try {
-			Path file = root.resolve(filename);
+			Path file = UPLOAD_PATH.resolve(filename);
 			Resource resource = new UrlResource(file.toUri());
 
 			if (resource.exists() || resource.isReadable()) {
@@ -51,7 +51,7 @@ public class FileUploadService {
 
 	public Stream<Path> loadAll() {
 		try {
-			return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
+			return Files.walk(this.UPLOAD_PATH, 1).filter(path -> !path.equals(this.UPLOAD_PATH)).map(this.UPLOAD_PATH::relativize);
 		} catch (IOException e) {
 			throw new RuntimeException("Could not load the files");
 		}
