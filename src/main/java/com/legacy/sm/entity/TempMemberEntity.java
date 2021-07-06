@@ -5,8 +5,12 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+/*
+ * 현재 테스트 때문에 다른 Member Entity 가 존재 하기 때문에 잠시 'TempMemberEntity'로 바꿔놓음
+ */
 @Entity
-public class MemberEntity {
+public class TempMemberEntity {
 	
 	@Id
 	private Integer id;
